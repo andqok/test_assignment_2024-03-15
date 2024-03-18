@@ -64,7 +64,7 @@ export function useCreatePassword() {
   }) {
     setSuccess(false);
     setLoading(true);
-    try {
+    // try {
       fetch( `${ apiEndpoint }${apiPath.passwordSetNew}`, {
         method: 'POST',
         headers: {
@@ -82,11 +82,13 @@ export function useCreatePassword() {
         // } else {
         //
         // }
-      });
-    } catch (error) {
-      setSuccess(false);
-      setLoading(true);
-    }
+      }).catch((error) => {
+        setSuccess(false);
+        setLoading(true);
+      })
+    // } catch (error) {
+
+    // }
   }
 
   return {

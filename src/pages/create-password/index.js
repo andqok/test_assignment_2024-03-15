@@ -44,25 +44,30 @@ export default function CreatePassword() {
         className={ style.form }
         onSubmit={handleSubmit(onSubmit)}
       >
-        <label>
-          Password
-          <PasswordInput
-            placeholder="Password"
-            autoComplete="new-password"
-            setValue={setValue}
-            { ...register('password', {
-              required: 'Please enter password',
-              minLength: {
-                value: passwordMinLength,
-                message: `Password must contain minimum ${ passwordMinLength } characters`
-              },
-              maxLength: {
-                value: passwordMaxLength,
-                message: `Password must contain maximum ${ passwordMaxLength } characters`
-              }
-            }) }
-          />
-        </label>
+        <div>
+          <label>
+            Password
+            <PasswordInput
+              placeholder="Password"
+              autoComplete="new-password"
+              setValue={setValue}
+              { ...register('password', {
+                required: 'Please enter password',
+                minLength: {
+                  value: passwordMinLength,
+                  message: `Password must contain minimum ${ passwordMinLength } characters`
+                },
+                maxLength: {
+                  value: passwordMaxLength,
+                  message: `Password must contain maximum ${ passwordMaxLength } characters`
+                }
+              }) }
+            />
+          </label>
+          <FormErrorMessage>
+            { errors?.password?.message }
+          </FormErrorMessage>
+        </div>
         <div>
           <label>
             Confirm Password
