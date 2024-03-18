@@ -11,6 +11,12 @@
 
 .switchButton {
     background-color: transparent;
+    width: 4.8rem;
+}
+
+.switchButtonIcon {
+    width: 2rem;
+    height: 2rem;
 }
 
 .input {

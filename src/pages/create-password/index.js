@@ -17,6 +17,7 @@ export default function CreatePassword() {
     formState: {
       errors,
     },
+    setValue,
     setError,
   } = useForm({})
 
@@ -47,6 +48,7 @@ export default function CreatePassword() {
           <PasswordInput
             placeholder="Password"
             autoComplete="new-password"
+            setValue={setValue}
             { ...register('password', {
               required: 'Please enter password'
             }) }
@@ -58,6 +60,7 @@ export default function CreatePassword() {
             <PasswordInput
               placeholder="Password"
               autoComplete="new-password"
+              setValue={setValue}
               { ...register('passwordConfirm', {
                 required: 'Please enter the same password again'
               }) }
