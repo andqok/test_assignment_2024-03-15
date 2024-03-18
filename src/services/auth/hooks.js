@@ -76,12 +76,12 @@ export function useCreatePassword() {
           secret,
           password_confirm: passwordConfirm,
         })
-      } ).then( async (response) => {
-        if (response.status === 200) {
-          const data = await response.json()
-        } else {
-
-        }
+      } ).then( async () => {
+        // if (response.status === 200) {
+        //   const data = await response.json()
+        // } else {
+        //
+        // }
       })
     } catch (error) {
       setSuccess(false)

@@ -2,11 +2,3 @@
     display: grid;
     grid-template-rows: 10rem minmax(10.8rem, min-content);
 }
-
-.password1 {
-    margin-top: .6rem;
-}
-
-.password2 {
-    margin-top: .8rem;
-}
