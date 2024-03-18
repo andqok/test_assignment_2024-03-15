@@ -66,7 +66,7 @@ export function useCreatePassword() {
     setSuccess(false)
     setLoading(true)
     try {
-      fetch( `${ apiEndpoint }${apiPath.passwordsSetNew}`, {
+      fetch( `${ apiEndpoint }${apiPath.passwordSetNew}`, {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"
@@ -78,10 +78,12 @@ export function useCreatePassword() {
           password_confirm: passwordConfirm,
         })
       } ).then( async (response) => {
-        // if (response.status === 200) {
-        const data = await response.json()
-        console.log(data)
-        // }
+        if (response.status === 200) {
+          const data = await response.json()
+          console.log(data)
+        } else {
+
+        }
       })
     } catch (error) {
       setSuccess(false)

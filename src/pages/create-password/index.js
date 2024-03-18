@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form"
 import FormErrorMessage from "../../components/FormErrorMessage";
 import {useCreatePassword} from "../../services/auth/hooks";
 import PasswordInput from "../../components/PasswordInput";
+import {passwordMaxLength, passwordMinLength} from "../../config";
 
 export default function CreatePassword() {
   let [searchParams] = useSearchParams();
@@ -50,7 +51,15 @@ export default function CreatePassword() {
             autoComplete="new-password"
             setValue={setValue}
             { ...register('password', {
-              required: 'Please enter password'
+              required: 'Please enter password',
+              minLength: {
+                value: passwordMinLength,
+                message: `Password must contain minimum ${ passwordMinLength } characters`
+              },
+              maxLength: {
+                value: passwordMaxLength,
+                message: `Password must contain maximum ${ passwordMaxLength } characters`
+              }
             }) }
           />
         </label>
@@ -62,7 +71,15 @@ export default function CreatePassword() {
               autoComplete="new-password"
               setValue={setValue}
               { ...register('passwordConfirm', {
-                required: 'Please enter the same password again'
+                required: 'Please enter the same password again',
+                minLength: {
+                  value: passwordMinLength,
+                  message: `Password must contain minimum ${ passwordMinLength } characters`
+                },
+                maxLength: {
+                  value: passwordMaxLength,
+                  message: `Password must contain maximum ${ passwordMaxLength } characters`
+                }
               }) }
             />
           </label>
