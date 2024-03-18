@@ -9,6 +9,7 @@ import SingleSignOn from "../../components/SingleSignOn";
 import Separator from "../../components/Separator";
 import {useEffect} from "react";
 import PasswordInput from "../../components/PasswordInput";
+import FormErrorMessage from "../../components/FormErrorMessage";
 
 export default function Login() {
   const { accessToken, logIn } = useAuth();
@@ -17,6 +18,7 @@ export default function Login() {
   const {
     register,
     handleSubmit,
+    setError,
     formState: {
       errors,
     }
@@ -34,7 +36,24 @@ export default function Login() {
   }, [accessToken, navigate]);
 
   const handleSubmit2 = async (data) => {
-    await logIn(data);
+    try {
+      await logIn(data);
+    } catch (error) {
+      if (Array.isArray(error)) {
+        for (let errorItem of error) {
+          setError(errorItem['field_name'], {
+            type: 'custom',
+            message: errorItem.error,
+          });
+        }
+      } else if (typeof error === 'string') {
+        setError('password', {
+          type: 'custom',
+          message: error,
+        });
+      }
+    }
+
     navigate('/');
   };
 
@@ -46,33 +65,41 @@ export default function Login() {
         className={ style.form }
         onSubmit={handleSubmit(handleSubmit2)}
       >
-        <input
-          type="email"
-          placeholder="Email"
-          { ...register('email', {
-            required: 'Please enter email',
-            maxLength: {
-              value: 512,
-              message: `Password must contain maximum ${ passwordMaxLength } characters`
-            }
-          }) }
-        />
-        { errors?.email?.message }
-        <PasswordInput
-          placeholder="Password"
-          {...register('password', {
-            required: 'Please enter password',
-            minLength: {
-              value: passwordMinLength,
-              message: `Password must contain minimum ${ passwordMinLength } characters`
-            },
-            maxLength: {
-              value: passwordMaxLength,
-              message: `Password must contain maximum ${ passwordMaxLength } characters`
-            }
-          })}
-        />
-        { errors?.password?.message }
+        <div>
+          <input
+            type="email"
+            placeholder="Email"
+            { ...register('email', {
+              required: 'Please enter email',
+              maxLength: {
+                value: 512,
+                message: `Password must contain maximum ${ passwordMaxLength } characters`
+              }
+            }) }
+          />
+          <FormErrorMessage>
+            { errors?.email?.message }
+          </FormErrorMessage>
+        </div>
+        <div>
+          <PasswordInput
+            placeholder="Password"
+            {...register('password', {
+              required: 'Please enter password',
+              minLength: {
+                value: passwordMinLength,
+                message: `Password must contain minimum ${ passwordMinLength } characters`
+              },
+              maxLength: {
+                value: passwordMaxLength,
+                message: `Password must contain maximum ${ passwordMaxLength } characters`
+              }
+            })}
+          />
+          <FormErrorMessage>
+            { errors?.password?.message }
+          </FormErrorMessage>
+        </div>
         <Link
           className={style.forgotLink}
           to="/forgot-password"
@@ -81,8 +108,7 @@ export default function Login() {
         </Link>
         <button
           className="primary"
-          onClick={ () => logIn({
-        }) }>
+        >
           Log in to { brandName }
         </button>
       </form>

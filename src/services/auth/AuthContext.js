@@ -12,17 +12,17 @@ export const AuthProvider = ({ children }) => {
 
   function logIn({ email, password }) {
     return new Promise((resolve, reject) => {
-      try {
-        fetch( `${ apiEndpoint }${apiPath.login}`, {
-          method: 'POST',
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            email,
-            password,
-          })
-        } ).then( async (response) => {
+      fetch( `${ apiEndpoint }${apiPath.login}`, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        })
+      } ).then( async (response) => {
+        try {
           const data = await response.json();
 
           if (response.status === 200 && data.error === 0) {
@@ -30,13 +30,17 @@ export const AuthProvider = ({ children }) => {
             resolve(data);
           } else {
             setErrorDetail(data.detail);
-            reject();
+            reject(data.detail);
           }
-        });
-      } catch (error) {
-        setErrorDetail('Network error');
-        reject();
-      }
+        } catch (error) {
+          setErrorDetail(error);
+          reject(error);
+        }
+
+      }).catch((error) => {
+        setErrorDetail(error);
+        reject(error);
+      });
     });
   }
 
@@ -58,7 +62,7 @@ export const AuthProvider = ({ children }) => {
             resolve(data);
           } else {
             setErrorDetail(data.detail);
-            reject();
+            reject(data.detail);
           }
         });
       } catch (error) {

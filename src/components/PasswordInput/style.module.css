@@ -7,7 +7,7 @@
 }
 
 .container:focus-within {
-    outline: inherit;
+    outline: 1px auto;
 }
 
 .switchButton {

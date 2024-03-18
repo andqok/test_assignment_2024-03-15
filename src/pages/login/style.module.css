@@ -1,6 +1,6 @@
 .form {
     display: grid;
-    grid-template-rows: 7.3rem 6rem 5.3rem;
+    grid-template-rows: minmax(7.3rem, min-content) minmax(6rem, min-content) minmax(5.3rem, min-content);
 }
 
 .forgotLink {
