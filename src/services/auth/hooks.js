@@ -33,7 +33,7 @@ export function usePasswordReset() {
           setSuccess(false)
           setFailureDetail(data.detail)
         }
-      }).catch((error) => {
+      }).catch(() => {
         setSuccess(false)
       })
     } catch (error) {
