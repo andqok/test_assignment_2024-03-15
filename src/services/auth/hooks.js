@@ -54,7 +54,6 @@ export function usePasswordReset() {
 
 export function useCreatePassword() {
   const [success, setSuccess] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   function createPassword({
      token,
@@ -63,37 +62,38 @@ export function useCreatePassword() {
      passwordConfirm,
   }) {
     setSuccess(false);
-    setLoading(true);
-    // try {
-      fetch( `${ apiEndpoint }${apiPath.passwordSetNew}`, {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          token,
-          password,
-          secret,
-          password_confirm: passwordConfirm,
-        })
-      } ).then( async () => {
-        // if (response.status === 200) {
-        //   const data = await response.json()
-        // } else {
-        //
-        // }
-      }).catch((error) => {
-        setSuccess(false);
-        setLoading(true);
-      })
-    // } catch (error) {
 
-    // }
+    fetch( `${ apiEndpoint }${apiPath.passwordSetNew}`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        token,
+        password,
+        secret,
+        password_confirm: passwordConfirm,
+      })
+    } ).then( async (response) => {
+      if (response.status === 200) {
+        try {
+          const data = await response.json()
+          if (data.error === 0) {
+            setSuccess(true)
+          } else {
+            setSuccess(false)
+          }
+        } catch (error) {
+          setSuccess(false)
+        }
+      }
+    }).catch((error) => {
+      setSuccess(false);
+    })
   }
 
   return {
     success,
-    loading,
     createPassword,
   };
 }
