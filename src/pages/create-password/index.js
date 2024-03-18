@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import FormErrorMessage from "../../components/FormErrorMessage";
 import {useCreatePassword} from "../../services/auth/hooks";
+import PasswordInput from "../../components/PasswordInput";
 
 export default function CreatePassword() {
   let [searchParams] = useSearchParams();
@@ -43,9 +44,7 @@ export default function CreatePassword() {
       >
         <label>
           Password
-          <input
-            type="password"
-            className={ style.password1 }
+          <PasswordInput
             placeholder="Password"
             autoComplete="new-password"
             { ...register('password', {
@@ -56,9 +55,7 @@ export default function CreatePassword() {
         <div>
           <label>
             Confirm Password
-            <input
-              type="password"
-              className={ style.password2 }
+            <PasswordInput
               placeholder="Password"
               autoComplete="new-password"
               { ...register('passwordConfirm', {
