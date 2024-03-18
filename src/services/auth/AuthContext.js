@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import {apiEndpoint} from "../../config";
 import {apiPath} from "./config";
 
@@ -84,6 +84,7 @@ export const AuthProvider = ({ children }) => {
   const contextValue = {
     logIn,
     refresh,
+    errorDetail,
     fetchWithAuth,
     accessToken,
     tokenExpire,

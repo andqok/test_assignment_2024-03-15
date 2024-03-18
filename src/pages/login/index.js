@@ -31,7 +31,7 @@ export default function Login() {
     if (accessToken) {
       navigate('/');
     }
-  }, [accessToken])
+  }, [accessToken, navigate])
 
   const handleSubmit2 = async (data) => {
     await logIn(data);

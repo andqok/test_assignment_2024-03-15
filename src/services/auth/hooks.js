@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {apiPath} from "./config";
 import {apiEndpoint} from "../../config";
 
@@ -56,7 +56,6 @@ export function usePasswordReset() {
 export function useCreatePassword() {
   const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [detail, setDetail] = useState('')
 
   function createPassword({
      token,
@@ -91,7 +90,6 @@ export function useCreatePassword() {
   }
 
   return {
-    detail,
     success,
     loading,
     createPassword,
