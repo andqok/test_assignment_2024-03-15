@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 
 export default function Home() {
-  const { accessToken, tokenExpire } = useAuth()
+  const { accessToken, tokenExpire } = useAuth();
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -22,5 +22,5 @@ export default function Home() {
         Fetch new
       </button>
     </div>
-  )
+  );
 }

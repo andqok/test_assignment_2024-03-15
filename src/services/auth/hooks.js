@@ -3,9 +3,9 @@ import {apiPath} from "./config";
 import {apiEndpoint} from "../../config";
 
 export function usePasswordReset() {
-  const [success, setSuccess] = useState(undefined)
-  const [failureDetail, setFailureDetail] = useState('')
-  const [successDetail, setSuccessDetail] = useState('')
+  const [success, setSuccess] = useState(undefined);
+  const [failureDetail, setFailureDetail] = useState('');
+  const [successDetail, setSuccessDetail] = useState('');
 
   function reset({email}) {
     try {
@@ -19,26 +19,26 @@ export function usePasswordReset() {
         })
       } ).then( async (response) => {
         if (response.status === 200) {
-          const data = await response.json()
+          const data = await response.json();
 
           if (data.error !== 0) {
-            setSuccess(true)
-            setSuccessDetail(data.detail)
+            setSuccess(true);
+            setSuccessDetail(data.detail);
           } else {
-            setSuccess(false)
-            setFailureDetail(data.detail)
+            setSuccess(false);
+            setFailureDetail(data.detail);
           }
         } else {
-          const data = await response.json()
-          setSuccess(false)
-          setFailureDetail(data.detail)
+          const data = await response.json();
+          setSuccess(false);
+          setFailureDetail(data.detail);
         }
       }).catch(() => {
-        setSuccess(false)
-      })
+        setSuccess(false);
+      });
     } catch (error) {
-      setSuccess(false)
-      setFailureDetail('Network error, please try again.')
+      setSuccess(false);
+      setFailureDetail('Network error, please try again.');
     }
   }
 
@@ -48,13 +48,13 @@ export function usePasswordReset() {
     failureDetail,
     successDetail,
     reset,
-  }
+  };
 }
 
 
 export function useCreatePassword() {
-  const [success, setSuccess] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   function createPassword({
      token,
@@ -62,8 +62,8 @@ export function useCreatePassword() {
      password,
      passwordConfirm,
   }) {
-    setSuccess(false)
-    setLoading(true)
+    setSuccess(false);
+    setLoading(true);
     try {
       fetch( `${ apiEndpoint }${apiPath.passwordSetNew}`, {
         method: 'POST',
@@ -82,10 +82,10 @@ export function useCreatePassword() {
         // } else {
         //
         // }
-      })
+      });
     } catch (error) {
-      setSuccess(false)
-      setLoading(true)
+      setSuccess(false);
+      setLoading(true);
     }
   }
 
@@ -93,6 +93,6 @@ export function useCreatePassword() {
     success,
     loading,
     createPassword,
-  }
+  };
 }
 

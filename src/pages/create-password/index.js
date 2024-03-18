@@ -1,7 +1,7 @@
 import style from "./style.module.css";
 import AuthLayout from "../../components/AuthLayout";
-import { useSearchParams } from "react-router-dom"
-import { useForm } from "react-hook-form"
+import { useSearchParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import FormErrorMessage from "../../components/FormErrorMessage";
 import {useCreatePassword} from "../../services/auth/hooks";
 import PasswordInput from "../../components/PasswordInput";
@@ -20,7 +20,7 @@ export default function CreatePassword() {
     },
     setValue,
     setError,
-  } = useForm({})
+  } = useForm({});
 
   const onSubmit = async (data) => {
     if (data.password === data.passwordConfirm) {
@@ -29,14 +29,14 @@ export default function CreatePassword() {
         token: searchParams.get('token'),
         password: data.password,
         passwordConfirm: data.passwordConfirm,
-      })
+      });
     } else {
       setError('passwordConfirm', {
         type: 'custom',
         message: 'Passwords must match.'
-      })
+      });
     }
-  }
+  };
 
   return (
     <AuthLayout title="Create new Password?">
@@ -93,5 +93,5 @@ export default function CreatePassword() {
         </button>
       </form>
     </AuthLayout>
-  )
+  );
 }

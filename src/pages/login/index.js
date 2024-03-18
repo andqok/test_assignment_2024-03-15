@@ -2,8 +2,8 @@ import {useAuth} from "../../services/auth/AuthContext";
 import AuthLayout from "../../components/AuthLayout";
 import {brandName, passwordMaxLength, passwordMinLength} from "../../config";
 import { Link } from "react-router-dom";
-import style from './style.module.css'
-import { useForm} from "react-hook-form"
+import style from './style.module.css';
+import { useForm} from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import SingleSignOn from "../../components/SingleSignOn";
 import Separator from "../../components/Separator";
@@ -24,13 +24,13 @@ export default function Login() {
       email: '',
       password: '',
     }
-  })
+  });
 
   useEffect(() => {
     if (accessToken) {
       navigate('/');
     }
-  }, [accessToken, navigate])
+  }, [accessToken, navigate]);
 
   const handleSubmit2 = async (data) => {
     await logIn(data);
@@ -90,5 +90,5 @@ export default function Login() {
         Is your company new to { brandName }? <Link to="#">Sign up</Link>
       </p>
     </AuthLayout>
-  )
+  );
 }

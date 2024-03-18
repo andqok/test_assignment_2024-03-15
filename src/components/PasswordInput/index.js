@@ -3,8 +3,8 @@ import { forwardRef } from 'react';
 import style from './style.module.css';
 
 function PasswordInput({ setValue, ...props }, ref) {
-  const [plaintextValue, setPlaintextValue] = useState('')
-  const [visible, setVisible] = useState(false)
+  const [plaintextValue, setPlaintextValue] = useState('');
+  const [visible, setVisible] = useState(false);
 
   function switchView(e) {
     e.preventDefault();
@@ -12,12 +12,12 @@ function PasswordInput({ setValue, ...props }, ref) {
   }
 
   function plaintextInput(e) {
-    setValue('password', e.target.value)
-    setPlaintextValue(e.target.value)
+    setValue('password', e.target.value);
+    setPlaintextValue(e.target.value);
   }
 
   function maskedInput(e) {
-    setPlaintextValue(e.target.value)
+    setPlaintextValue(e.target.value);
   }
 
   return (
@@ -52,7 +52,7 @@ function PasswordInput({ setValue, ...props }, ref) {
         />
       </button>
     </div>
-  )
+  );
 }
 
-export default forwardRef(PasswordInput)
+export default forwardRef(PasswordInput);

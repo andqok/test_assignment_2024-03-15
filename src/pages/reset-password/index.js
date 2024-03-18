@@ -1,7 +1,7 @@
 import {usePasswordReset} from "services/auth/hooks";
 import style from "./style.module.css";
 import AuthLayout from "../../components/AuthLayout";
-import { useForm} from "react-hook-form"
+import { useForm} from "react-hook-form";
 import classNames from "classnames";
 import FormErrorMessage from "../../components/FormErrorMessage";
 
@@ -16,7 +16,7 @@ export default function ResetPassword() {
   const {
     register,
     handleSubmit,
-  } = useForm({})
+  } = useForm({});
 
   return (
     <AuthLayout title="Forgot Password?">
@@ -56,5 +56,5 @@ export default function ResetPassword() {
           )
       }
     </AuthLayout>
-  )
+  );
 }

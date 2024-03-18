@@ -5,10 +5,10 @@ import {apiPath} from "./config";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [tokens, setTokens] = useState({})
-  const [errorDetail, setErrorDetail] = useState(null)
-  const accessToken = tokens['access_token']
-  const tokenExpire = tokens['token_expire']
+  const [tokens, setTokens] = useState({});
+  const [errorDetail, setErrorDetail] = useState(null);
+  const accessToken = tokens['access_token'];
+  const tokenExpire = tokens['token_expire'];
 
   function logIn({ email, password }) {
     return new Promise((resolve, reject) => {
@@ -23,21 +23,21 @@ export const AuthProvider = ({ children }) => {
             password,
           })
         } ).then( async (response) => {
-          const data = await response.json()
+          const data = await response.json();
 
           if (response.status === 200 && data.error === 0) {
-            setTokens(data)
-            resolve(data)
+            setTokens(data);
+            resolve(data);
           } else {
-            setErrorDetail(data.detail)
-            reject()
+            setErrorDetail(data.detail);
+            reject();
           }
-        })
+        });
       } catch (error) {
-        setErrorDetail('Network error')
-        reject()
+        setErrorDetail('Network error');
+        reject();
       }
-    })
+    });
   }
 
   function refresh() {
@@ -52,33 +52,33 @@ export const AuthProvider = ({ children }) => {
             "refresh_token": tokens['refresh_token'],
           })
         } ).then( async (response) => {
-          const data = await response.json()
+          const data = await response.json();
           if (response.status === 200 && data.error === 0) {
-            setTokens(data)
-            resolve(data)
+            setTokens(data);
+            resolve(data);
           } else {
-            setErrorDetail(data.detail)
-            reject()
+            setErrorDetail(data.detail);
+            reject();
           }
-        })
+        });
       } catch (error) {
-        reject()
+        reject();
       }
-    })
+    });
   }
 
   async function fetchWithAuth(url, options) {
     if (tokenExpire < ( Date.now() + 1000) ) {
-      const tokens = await refresh()
+      const tokens = await refresh();
       return fetch(url, {
         ...options,
         'Authorization': `Bearer ${ tokens['accessToken'] }`
-      })
+      });
     }
     return fetch(url, {
       ...options,
       'Authorization': `Bearer ${ accessToken }`
-    })
+    });
   }
 
   const contextValue = {
@@ -91,7 +91,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
-}
+};
 
 export const useAuth = () => {
   return useContext(AuthContext);

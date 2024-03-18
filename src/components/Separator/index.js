@@ -1,4 +1,4 @@
-import style from './style.module.css'
+import style from './style.module.css';
 
 export default function Separator() {
   return (
@@ -9,5 +9,5 @@ export default function Separator() {
       </span>
       <div className={style.line} />
     </div>
-  )
+  );
 }

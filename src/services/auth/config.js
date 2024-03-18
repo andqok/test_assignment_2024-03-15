@@ -6,4 +6,4 @@ export const apiPath = {
   refreshToken: '/v1/auth/refresh-token',
   passwordReset: '/v1/auth/password-reset',
   passwordSetNew: '/v1/auth/password-set',
-}
+};

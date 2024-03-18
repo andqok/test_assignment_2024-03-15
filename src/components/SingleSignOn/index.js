@@ -15,7 +15,7 @@ export default function SingleSignOn() {
         text="Github"
       />
     </div>
-  )
+  );
 }
 
 function SsoButton({ src, alt, text }) {
@@ -28,5 +28,5 @@ function SsoButton({ src, alt, text }) {
       />
       { text }
     </button>
-  )
+  );
 }

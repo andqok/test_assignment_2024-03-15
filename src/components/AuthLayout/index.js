@@ -1,4 +1,4 @@
-import style from './style.module.css'
+import style from './style.module.css';
 import {brandName} from "../../config";
 
 export default function AuthLayout({ title, children }) {
@@ -14,5 +14,5 @@ export default function AuthLayout({ title, children }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
