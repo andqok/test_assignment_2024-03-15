@@ -53,8 +53,6 @@ export default function Login() {
         });
       }
     }
-
-    navigate('/');
   };
 
   return (
