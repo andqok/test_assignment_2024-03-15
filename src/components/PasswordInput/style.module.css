@@ -3,6 +3,7 @@
     flex-direction: row;
     border-radius: 0.6rem;
     border: 0.1rem solid var(--color-grey-200);
+    height: min-content;
 }
 
 .container:focus-within {

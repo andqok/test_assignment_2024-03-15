@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import SingleSignOn from "../../components/SingleSignOn";
 import Separator from "../../components/Separator";
 import {useEffect} from "react";
+import PasswordInput from "../../components/PasswordInput";
 
 export default function Login() {
   const { accessToken, logIn } = useAuth();
@@ -57,8 +58,7 @@ export default function Login() {
           }) }
         />
         { errors?.email?.message }
-        <input
-          type="password"
+        <PasswordInput
           placeholder="Password"
           {...register('password', {
             required: 'Please enter password',
