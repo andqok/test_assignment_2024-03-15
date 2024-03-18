@@ -25,7 +25,6 @@ export default function Login() {
       password: '',
     }
   })
-  console.log(errors)
 
   useEffect(() => {
     if (accessToken) {

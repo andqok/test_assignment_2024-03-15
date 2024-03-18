@@ -20,7 +20,7 @@ export function usePasswordReset() {
       } ).then( async (response) => {
         if (response.status === 200) {
           const data = await response.json()
-          console.log(data)
+
           if (data.error !== 0) {
             setSuccess(true)
             setSuccessDetail(data.detail)
@@ -34,7 +34,6 @@ export function usePasswordReset() {
           setFailureDetail(data.detail)
         }
       }).catch((error) => {
-        console.log('Catch', error)
         setSuccess(false)
       })
     } catch (error) {
@@ -80,7 +79,6 @@ export function useCreatePassword() {
       } ).then( async (response) => {
         if (response.status === 200) {
           const data = await response.json()
-          console.log(data)
         } else {
 
         }

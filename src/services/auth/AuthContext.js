@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
           })
         } ).then( async (response) => {
           const data = await response.json()
-          console.log(data)
+
           if (response.status === 200 && data.error === 0) {
             setTokens(data)
             resolve(data)
