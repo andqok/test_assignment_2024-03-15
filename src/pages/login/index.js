@@ -1,6 +1,6 @@
 import {useAuth} from "../../services/auth/AuthContext";
 import AuthLayout from "../../components/AuthLayout";
-import {brandName} from "../../config";
+import {brandName, passwordMaxLength, passwordMinLength} from "../../config";
 import { Link } from "react-router-dom";
 import style from './style.module.css'
 import { useForm} from "react-hook-form"
@@ -51,7 +51,10 @@ export default function Login() {
           placeholder="Email"
           { ...register('email', {
             required: 'Please enter email',
-            maxLength: 512,
+            maxLength: {
+              value: 512,
+              message: `Password must contain maximum ${ passwordMaxLength } characters`
+            }
           }) }
         />
         { errors?.email?.message }
@@ -60,8 +63,14 @@ export default function Login() {
           placeholder="Password"
           {...register('password', {
             required: 'Please enter password',
-            minLength: 5,
-            maxLength: 512,
+            minLength: {
+              value: passwordMinLength,
+              message: `Password must contain minimum ${ passwordMinLength } characters`
+            },
+            maxLength: {
+              value: passwordMaxLength,
+              message: `Password must contain maximum ${ passwordMaxLength } characters`
+            }
           })}
         />
         { errors?.password?.message }
