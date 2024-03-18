@@ -1,0 +1,80 @@
+import style from "./style.module.css";
+import AuthLayout from "../../components/AuthLayout";
+import { useSearchParams } from "react-router-dom"
+import { useForm } from "react-hook-form"
+import FormErrorMessage from "../../components/FormErrorMessage";
+import {useCreatePassword} from "../../services/auth/hooks";
+
+export default function CreatePassword() {
+  let [searchParams] = useSearchParams();
+  const {
+    createPassword,
+  } = useCreatePassword();
+  const {
+    register,
+    handleSubmit,
+    formState: {
+      errors,
+    },
+    setError,
+  } = useForm({})
+
+  const onSubmit = async (data) => {
+    if (data.password === data.passwordConfirm) {
+      createPassword({
+        secret: searchParams.get('secret'),
+        token: searchParams.get('token'),
+        password: data.password,
+        passwordConfirm: data.passwordConfirm,
+      })
+    } else {
+      setError('passwordConfirm', {
+        type: 'custom',
+        message: 'Passwords must match.'
+      })
+    }
+  }
+
+  return (
+    <AuthLayout title="Create new Password?">
+      <form
+        className={ style.form }
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <label>
+          Password
+          <input
+            type="password"
+            className={ style.password1 }
+            placeholder="Password"
+            autoComplete="new-password"
+            { ...register('password', {
+              required: 'Please enter password'
+            }) }
+          />
+        </label>
+        <div>
+          <label>
+            Confirm Password
+            <input
+              type="password"
+              className={ style.password2 }
+              placeholder="Password"
+              autoComplete="new-password"
+              { ...register('passwordConfirm', {
+                required: 'Please enter the same password again'
+              }) }
+            />
+          </label>
+          <FormErrorMessage>
+            { errors?.passwordConfirm?.message }
+          </FormErrorMessage>
+        </div>
+        <button
+          className="primary">
+          Reset Password
+        </button>
+      </form>
+    </AuthLayout>
+  )
+}

@@ -1,0 +1,13 @@
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.send {
+    margin-top: 2.5rem;
+}
+
+.cancel {
+    margin-top: 2rem;
+}

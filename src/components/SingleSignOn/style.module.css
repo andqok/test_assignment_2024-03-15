@@ -1,0 +1,17 @@
+.ssoContainer {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.ssoItem {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image {
+    width: 1.8rem;
+    height: 1.8rem;
+    margin-right: 1rem;
+}

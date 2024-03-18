@@ -1,0 +1,15 @@
+.form {
+    display: grid;
+    grid-template-rows: 7.3rem 6rem 5.3rem;
+}
+
+.forgotLink {
+    display: inline-block;
+    margin-left: auto;
+}
+
+.signUpInvite {
+    text-align: center;
+    font-size: 1.4rem;
+    margin-top: 1.8rem;
+}

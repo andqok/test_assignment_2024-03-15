@@ -1,0 +1,38 @@
+.logo {
+    width: 17.8rem;
+    height: 3.2rem;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.authLayout {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+.container {
+    width: 40rem;
+    margin-top: 20rem;
+    display: grid;
+    grid-template-rows: 10.5rem minmax(8.4rem, min-content);
+}
+
+.heading {
+    text-align: center;
+    font-size: 3rem;
+    letter-spacing: .03rem;
+    margin-bottom: 2rem;
+}
+
+.main {
+    padding: 0 1rem;
+}
+
+@media (min-width: 42rem) {
+    .main {
+        padding: 0;
+    }
+}

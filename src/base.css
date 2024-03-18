@@ -1,0 +1,70 @@
+:root {
+  --color-primary-200: #316FEA;
+  --color-grey-200: #D3D8DC;
+  --color-grey-300: #A1ABB5;
+  --color-grey-600: #E3E6E9;
+  --color-grey-700: #BEC5CC;
+  --color-grey-800: #060E1E;
+  --color-grey-900: #1A1919;
+  --control-height-1: 4.8rem;
+}
+
+html {
+  font-size: 10px;
+}
+
+html,
+body,
+#root,
+.App {
+  height: 100%;
+}
+
+button {
+  border-radius: .8rem;
+  border: none;
+  min-height: var(--control-height-1);
+  font-size: 1.6rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+button.primary {
+  color: #fff;
+  background-color: var(--color-primary-200);
+}
+
+button.secondary {
+  color: var(--color-grey-900);
+  border: .1rem solid var(--color-grey-200);
+  background-color: #fff;
+}
+
+input {
+  border-radius: .6rem;
+  border: .1rem solid var(--color-grey-200);
+  height: var(--control-height-1);
+  padding-inline: 1rem;
+  width: 100%;
+  font-size: 1.4rem;
+}
+
+input::placeholder {
+  color: var(--color-grey-300);
+}
+
+a {
+  color: var(--color-primary-200);
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+h1 {
+  color: var(--color-grey-900);
+}
+
+label {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
